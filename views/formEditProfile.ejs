@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <form action="/profile/<%= data.id%>/edit" method="POST">
+        <label>Full Name</label>
+        <br>
+        <input type="text" name="fullName" value="<%= data.fullName %> ">
+        <br>
+        <label>Foto Profile</label>
+        <br>
+        <input type="text" name="photoProfile" value="<%= data.photoProfile %>">
+        <br>
+        <label>Birth Date</label>
+        <br>
+        <input type="date" name="birthDate" value="<%= data.birthDate %>">
+        <br>
+        <button type="submit">submit</button>
+        <a href="/profile/<%= data.id%>"><input type="button" value="Cancel"></a>
+    </form>
+</body>
+</html>
