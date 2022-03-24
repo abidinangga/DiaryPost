@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-</head>
-<body>
+  </head>
+  <body>
+    <nav>
+      Diary Post
+      <button onclick="location.href='/profile'">Profile</button>
+      <button onclick="location.href='/post'">All Post</button>
+      <button onclick="location.href='/logout'">Logout</button>
+    </nav>
     <h1>Profile</h1>
-    <a href="/profile/<%= data.id%>/edit"><button>Edit Profile</button></a>
-    <a href="/profile/<%= data.id%>/post"><button>My Post</button></a>
+    <a href="/profile/edit"><button>Edit Profile</button></a>
+    <a href="/profile/post"><button>My Post</button></a>
     <div class="card">
-        <img src="<%= data.photoProfile %> " alt="Avatar" style="width:200px">
-        <div class="container">
-          <h3><b>Nama:<%= data.fullName %></b></h3> 
-            <p>BirthDate:<%= data.birthDate %></p>
-          <p>Gendre:<%=data.gender%></p> 
-        </div>
+      <img src="<%= data.photoProfile %> " alt="Avatar" style="width: 200px" />
+      <div class="container">
+        <h3><b>Nama:<%= data.fullName %></b></h3>
+        <p>Birth Date:<%=date(data.birthDate) %> (<%=age%>)</p>
+        <p>Gender:<%=data.gender%></p>
       </div>
-</body>
-<style>
+    </div>
+  </body>
+  <style>
     .card {
-      box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
       width: 20%;
     }
-    
+
     .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
-    
+
     .container {
       padding: 2px 16px;
     }
-    </style>
+  </style>
 </html>

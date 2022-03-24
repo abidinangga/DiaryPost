@@ -7,14 +7,20 @@
     <title>Post Detail</title>
   </head>
   <body>
+    <nav>
+      Diary Post
+      <button onclick="location.href='/profile'">Profile</button>
+      <button onclick="location.href='/post'">All Post</button>
+      <button onclick="location.href='/logout'">Logout</button>
+    </nav>
     <h1>Post Detail</h1>
     <p><b>Title: </b><%= post.title %></p>
     <p><b>Category: </b><%= post.Tag.name %></p>
-    <p><b>Post Code: </b><%= post.Tag.name %></p>
+    <p><b>Post Code: </b><%= post.postCode %></p>
     <p><b>Description: </b><%= post.description %></p>
     <p><b>Image URL: </b><%= post.imageUrl %></p>
     <p><b>Posted By: </b><%= post.User.username %></p>
-    <p><b>Posted At: </b><%= post.createdAt %></p>
-    <button onclick="location.href='/post/<%= post.id %>/edit'">Edit</button>
+    <p><b>Posted At: </b><%= post.formatDate %></p>
+    <button onclick="location.href='/post'">Cancel</button>
   </body>
 </html>

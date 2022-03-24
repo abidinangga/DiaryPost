@@ -4,29 +4,5 @@
     "email": "tborer0@admin.ch",
     "password": "M7JWuO",
     "role": "Admin"
-  },
-  {
-    "username": "dfrossell1",
-    "email": "asummerscales1@weather.com",
-    "password": "qfljB76tkNtj",
-    "role": "User"
-  },
-  {
-    "username": "dbertolin2",
-    "email": "chamson2@state.gov",
-    "password": "JSxhtw",
-    "role": "User"
-  },
-  {
-    "username": "paukland3",
-    "email": "bnewlands3@livejournal.com",
-    "password": "H8hI2uZoLz",
-    "role": "User"
-  },
-  {
-    "username": "ccanepe4",
-    "email": "mgash4@msn.com",
-    "password": "4l8gSRrbyRfD",
-    "role": "User"
   }
 ]

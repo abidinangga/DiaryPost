@@ -7,7 +7,17 @@
     <title>List Post</title>
 </head>
 <body>
-    <h1>List Post</h1>
+    <nav>
+        Diary Post
+        <button onclick="location.href='/profile'">Profile</button>
+        <button onclick="location.href='/post'">All Post</button>
+        <button onclick="location.href='/logout'">Logout</button>
+      </nav>
+    <h1>All Post</h1>
+    <form action="/post?title=title">
+        <input type="text" placeholder="Search By Title" name="title"/>
+        <input type="submit" value="Search" />
+      </form>
     <table border="1">
         <tr>
             <th>Image</th>
@@ -21,7 +31,7 @@
                 <td><%= el.title %> </td>
                 <td><%= el.Tag.name %> </td>
                 <td>
-                    <button onclick="location.href='/post/<%= el.id %>/detail'">Detail</button>
+                <button onclick="location.href='/post/<%= el.id %>/detail'">Detail</button>
                 </td>
             </tr>
         <% }) %> 
