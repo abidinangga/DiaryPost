@@ -13,13 +13,38 @@ class Controller {
   static saveRegister(req, res) {
     const { username, email, password } = req.body;
     User.create({ username, email, password })
+      .then((data) => {
+        const newProfile = {
+          fullName: data.username,
+          UserId: data.id,
+          birthDate: new Date()
+        };
+        Profile.create(newProfile);
+      })
       .then(() => {
-        nodemailer.createTestAccount((err, account) => {});
+        const transporter = nodemailer.createTransport({
+          service: "hotmail",
+          auth: {
+            user: "dairypost@outlook.com",
+            pass: "Berandal89",
+          },
+        });
+
+        let option = {
+          from: "dairypost@outlook.com",
+          to: `${email}`,
+          subject: "Registration Success!",
+          text: `Welcome to the jungle, ${username}!`,
+        };
+        transporter.sendMail(option, (err, info) => {
+          if (err) {
+            return;
+          }
+        });
         res.redirect("/");
       })
-
       .catch((err) => {
-        err = err.errors.map(el => el.message)
+        err = err.errors.map((el) => el.message);
         res.send(err);
       });
   }
@@ -33,11 +58,8 @@ class Controller {
         if (bcrypt.compareSync(password, user.password)) {
           let id = user.id;
           req.session.UserId = id;
-          if (!user.Profile) {
-            res.redirect(`/profile/add`);
-          } else {
-            res.redirect(`/profile`);
-          }
+
+          res.redirect(`/profile`);
         } else {
           res.send("Password Salah");
         }
@@ -52,34 +74,14 @@ class Controller {
     res.redirect("/");
   }
 
-  static addProfile(req, res) {
-    res.render("formcreateProfile");
-  }
-
-  static saveProfile(req, res) {
-    const { fullName, gender, birthDate, photoProfile } = req.body;
-    const { UserId } = req.session;
-    const newProfile = {
-      fullName,
-      gender,
-      birthDate,
-      photoProfile,
-      UserId,
-    };
-    Profile.create(newProfile)
-      .then(() => {
-        res.redirect(`/profile/`);
-      })
-      .catch((err) => {
-        err = err.errors.map((el) => el.message);
-        res.send(err);
-      });
-  }
-
   static Profile(req, res) {
     let id = req.session.UserId;
 
-    Profile.findByPk(id)
+    Profile.findOne({
+      where: {
+        UserId: id
+      }
+    })
       .then((data) => {
         let age = Profile.calcAge(data.birthDate);
         res.render("Profile", { data, date, age });
@@ -90,7 +92,11 @@ class Controller {
   }
   static profileEdit(req, res) {
     let id = req.session.UserId;
-    Profile.findByPk(id)
+    Profile.findOne({
+      where: {
+        UserId: id
+      }
+    })
       .then((data) => {
         res.render("formEditProfile", { data, date });
       })
@@ -105,7 +111,7 @@ class Controller {
       photoProfile: req.body.photoProfile,
       birthDate: req.body.birthDate,
     };
-    Profile.update(newData, { where: { id } })
+    Profile.update(newData, { where: { UserId: id } })
       .then(() => {
         res.redirect(`/profile`);
       })

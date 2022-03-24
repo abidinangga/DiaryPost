@@ -48,6 +48,12 @@ module.exports = (sequelize, DataTypes) => {
     UserId:DataTypes.INTEGER
   }, {
     sequelize,
+    hooks: {
+      beforeCreate: ((profile) => {
+        profile.photoProfile = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        profile.gender = 'Male'
+      })
+    },
     modelName: 'Profile',
   });
   return Profile;
